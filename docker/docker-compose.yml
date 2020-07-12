@@ -1,0 +1,43 @@
+version: '3'
+services:
+
+    web:
+        image: nginx:latest
+        container_name: nginx
+        restart: always
+        ports:
+            - "80:80"
+        volumes:
+            - ../backend-laravel:/www
+            - ./site.conf:/etc/nginx/conf.d/site.conf
+        networks:
+            - app-network
+
+    php:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        container_name: php-fpm
+        volumes:
+            - ../backend-laravel:/www
+        networks:
+            - app-network
+
+    db:
+        image: mysql:5.7
+        container_name: mysql
+        ports:
+            - 3306:3306
+        restart: always
+        tty: true
+        environment:
+            MYSQL_ROOT_PASSWORD: gustavo
+            MYSQL_DATABASE: meularavel
+            MYSQL_USER: gustavo
+            MYSQL_PASSWORD: gustavo
+        networks:
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge

@@ -1,0 +1,1 @@
+export const url = 'http://estadao-digital.local/api/'

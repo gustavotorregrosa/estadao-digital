@@ -1,0 +1,14 @@
+.quadroinput {
+    padding: 0.5em;
+    transition: background-color 0.5s ease;
+   
+}
+
+.quadroinput input{
+    border: none !important;
+    box-shadow: none !important; 
+}
+
+.ativo{
+    background-color: #ff967f;
+}
